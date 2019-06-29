@@ -1,0 +1,76 @@
+<%- include("../partials/header") %>
+
+<img 
+       class="cohort-img"
+       src=<%= cohorts.logo_url %>
+       height="75px" >
+
+<h2><%= cohorts.cname %></h2>
+<p><%= cohorts.members %></p>
+
+
+<!-- New stuff below -->
+
+ <!-- <a href="/cohorts/<%= cohorts.id %>"><button>Show Cohort</button></a> <br> --> 
+
+<script>
+    function showInput() {
+        document.getElementById('display').innerHTML = 
+                    document.getElementById("user_input").value;
+    }
+  </script>
+
+
+<form action="/cohorts/<%= cohorts.id %>" method="GET">
+<input type="hidden" name="id" value="<%= cohorts.id %>">
+  <div>
+  Method:<br>
+  <input type="radio" name="picMethod" value="byteam" checked> Team Count<br>
+  <input type="radio" name="picMethod" value="bymember"> Number Per Team<br>
+  <br><br>       
+  </div>
+
+  <div>
+  Quantity:<br>
+  <input type="text" name="qty">
+  <br><br>
+  </div>
+
+  <input type="submit" value="Assign Team">
+<br><br>
+</form>
+
+
+  <form>
+    <label><b>Enter a Message</b></label>
+    <input type="text" name="message" id="user_input">
+  </form>
+
+  <input type="submit" onclick="showInput();"><br/>
+  <label>Your input: </label>
+  <p><span id='display'></span></p>
+
+
+
+
+
+<!-- New stuff above -->
+
+
+
+
+<form action="/cohorts/<%= cohorts.id %>" method="POST">
+  <input type="hidden" name="_method" value="EDIT">
+  <input type="submit" value="Edit Cohort">
+</form>
+<br>
+<form action="/cohorts/<%= cohorts.id %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete">
+</form>
+
+
+
+
+
+<%- include("../partials/footer") %>
