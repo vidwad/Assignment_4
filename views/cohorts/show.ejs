@@ -1,0 +1,81 @@
+<%- include("../partials/header") %>
+
+
+
+<img 
+       class="cohort-img"
+       src=<%= cohorts.logo_url %>
+       height="75px" >
+
+<h2><%= cohorts.cname %></h2>
+<p><%= cohorts.members %></p>
+
+
+<!-- New stuff below -->
+
+<form action="/cohorts/show/<%= cohorts.id %>" method="GET">
+  <div class="form-group">
+  <input type="hidden" name="id" value="<%= cohorts.id %>">
+    <label> Method:</label><br>
+    <input type="radio" name="picMethod" id="picMethod" value="byteam"  checked> Team Count<br>
+  <input type="radio" name="picMethod" id="picMethod" value="bymember" > Number Per Team<br>
+
+  </div>
+  <div class="form-group">
+    <label> Quantity:</label>
+    <input type="text" class="form-control" name="qty" id="qty">
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Assign Team</button>
+</form>
+
+<br><br>
+
+
+
+<!-- from cohorts.js -->
+
+<h3>Assigned Teams:</h3><br><br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<% if (typeof newteamArray !== "undefined") { %>
+  <% for (i=0; i<newteamArray.length; i=i+1) { %>
+
+    <tr>
+      <th scope="row"> <%= i+1 %></th>
+      <td><%= newteamArray[i] %></td>
+  
+    </tr>
+    
+
+ <% } %>
+  <% } %>
+
+  </tbody>
+</table>
+
+
+
+
+<!-- New stuff above -->
+
+
+<br><br>
+
+<br>
+<form action="/cohorts/<%= cohorts.id %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Cohort">
+</form>
+
+
+
+<%- include("../partials/footer") %>

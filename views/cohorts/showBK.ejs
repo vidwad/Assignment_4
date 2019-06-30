@@ -1,0 +1,72 @@
+<%- include("../partials/header") %>
+
+<img 
+       class="cohort-img"
+       src=<%= cohorts.logo_url %>
+       height="75px" >
+
+<h2><%= cohorts.cname %></h2>
+<p><%= cohorts.members %></p>
+
+
+<!-- New stuff below -->
+
+ <form action="/cohorts/show/<%= cohorts.id %>" method="GET">
+<input type="hidden" name="id" value="<%= cohorts.id %>">
+  <div>
+  Method:<br>
+  <input type="radio" name="picMethod" id="picMethod" value="byteam"  checked> Team Count<br>
+  <input type="radio" name="picMethod" id="picMethod" value="bymember" > Number Per Team<br>
+  <br><br>       
+  </div>
+
+  <div>
+  Quantity:<br>
+  <input type="text" name="qty" id="qty">
+  <br><br>
+  </div>
+
+   <input type="submit" value="Assign Team"/>
+<br><br>
+</form>
+
+  
+  <br><br>
+
+
+
+<!-- from cohorts.js -->
+
+<h3>Assigned Teams:</h3><br><br>
+
+  <ul>
+  <% if (typeof newteamArray !== "undefined") { %>
+  <% for (i=0; i<newteamArray.length; i=i+1) { %>
+  <li><p> <%= i+1 %> </p> <p> <%= newteamArray[i] %> </p> 
+   </li>
+  <% } %>
+  <% } %>
+  </ul>
+
+
+
+
+
+
+
+<!-- New stuff above -->
+
+
+<br><br>
+
+<br>
+<form action="/cohorts/<%= cohorts.id %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Cohort">
+</form>
+
+
+
+
+
+<%- include("../partials/footer") %>
