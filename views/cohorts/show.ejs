@@ -1,5 +1,7 @@
 <%- include("../partials/header") %>
 
+
+
 <img 
        class="cohort-img"
        src=<%= cohorts.logo_url %>
@@ -11,29 +13,23 @@
 
 <!-- New stuff below -->
 
- <form action="/cohorts/show/<%= cohorts.id %>" method="GET">
-<input type="hidden" name="id" value="<%= cohorts.id %>">
-  <div>
-  Method:<br>
-  <input type="radio" name="picMethod" id="picMethod" value="byteam"  checked> Team Count<br>
+<form action="/cohorts/show/<%= cohorts.id %>" method="GET">
+  <div class="form-group">
+  <input type="hidden" name="id" value="<%= cohorts.id %>">
+    <label> Method:</label><br>
+    <input type="radio" name="picMethod" id="picMethod" value="byteam"  checked> Team Count<br>
   <input type="radio" name="picMethod" id="picMethod" value="bymember" > Number Per Team<br>
-  <br><br>       
-  </div>
 
-  <div>
-  Quantity:<br>
-  <input type="text" name="qty" id="qty">
-  <br><br>
   </div>
-
-   <input type="submit" value="Assign Team"/>
-<br><br>
+  <div class="form-group">
+    <label> Quantity:</label>
+    <input type="text" class="form-control" name="qty" id="qty">
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Assign Team</button>
 </form>
 
-  
-  <br><br>
-
-
+<br><br>
 
 
 
@@ -41,15 +37,30 @@
 
 <h3>Assigned Teams:</h3><br><br>
 
-  <ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<% if (typeof newteamArray !== "undefined") { %>
   <% for (i=0; i<newteamArray.length; i=i+1) { %>
-  <li><p> <%= i+1 %> </p> <p> <%= newteamArray[i] %> </p> 
-   </li>
+
+    <tr>
+      <th scope="row"> <%= i+1 %></th>
+      <td><%= newteamArray[i] %></td>
+  
+    </tr>
+    
+
+ <% } %>
   <% } %>
-  </ul>
 
-
-
+  </tbody>
+</table>
 
 
 
@@ -64,8 +75,6 @@
   <input type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete Cohort">
 </form>
-
-
 
 
 

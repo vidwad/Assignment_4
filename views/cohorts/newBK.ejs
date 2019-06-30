@@ -1,0 +1,34 @@
+<%- include("../partials/header") %>
+
+<br>
+<form action="/cohorts" method="POST">
+  <div>
+  Logo Url:<br>
+  <input type="text" name="logo_url" placeholder="e.g. https://www.example.com/some.png">
+  <br><br>
+  </div>
+
+  <div>
+  Name:<br>
+  <input type="text" name="cname" placeholder="Cohort 99">
+  <br><br>
+  </div>
+
+  <div>
+  Members:<br>
+    <textarea
+      name="members"
+      cols="50"
+      rows="10"
+      placeholder="Jon Snow, Todd Smith, Linda Anderson, April Carters"
+    ></textarea>
+  <br><br>
+  </div>
+
+  <input type="submit" value="Create New Cohort">
+</form>
+
+
+
+
+<%- include("../partials/footer") %>

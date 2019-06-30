@@ -1,31 +1,32 @@
 <%- include("../partials/header") %>
 
+
+
 <br>
+
 <form action="/cohorts" method="POST">
-  <div>
-  Logo Url:<br>
-  <input type="text" name="logo_url" placeholder="e.g. https://www.example.com/some.png">
-  <br><br>
+  <div class="form-group">
+    <label>Logo Url:</label>
+    <input type="text" name="logo_url" class="form-control" placeholder="e.g. https://www.example.com/some.png">
   </div>
-
-  <div>
-  Name:<br>
-  <input type="text" name="cname" placeholder="Cohort 99">
-  <br><br>
+  <div class="form-group">
+    <label>Name:</label>
+    <input type="text" class="form-control" name="cname" placeholder="Cohort 99">
   </div>
-
-  <div>
-  Members:<br>
+  <div class="form-group">
+    <label>Members:</label>
     <textarea
       name="members"
       cols="50"
-      rows="10"
+      rows="5"
       placeholder="Jon Snow, Todd Smith, Linda Anderson, April Carters"
+      class="form-control"
     ></textarea>
-  <br><br>
   </div>
-
-  <input type="submit" value="Create New Cohort">
+  
+  <button type="submit" class="btn btn-primary">Create New Cohort</button>
 </form>
+
+
 
 <%- include("../partials/footer") %>

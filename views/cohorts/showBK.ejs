@@ -11,44 +11,44 @@
 
 <!-- New stuff below -->
 
- <!-- <a href="/cohorts/<%= cohorts.id %>"><button>Show Cohort</button></a> <br> --> 
-
-<script>
-    function showInput() {
-        document.getElementById('display').innerHTML = 
-                    document.getElementById("user_input").value;
-    }
-  </script>
-
-
-<form action="/cohorts/<%= cohorts.id %>" method="GET">
+ <form action="/cohorts/show/<%= cohorts.id %>" method="GET">
 <input type="hidden" name="id" value="<%= cohorts.id %>">
   <div>
   Method:<br>
-  <input type="radio" name="picMethod" value="byteam" checked> Team Count<br>
-  <input type="radio" name="picMethod" value="bymember"> Number Per Team<br>
+  <input type="radio" name="picMethod" id="picMethod" value="byteam"  checked> Team Count<br>
+  <input type="radio" name="picMethod" id="picMethod" value="bymember" > Number Per Team<br>
   <br><br>       
   </div>
 
   <div>
   Quantity:<br>
-  <input type="text" name="qty">
+  <input type="text" name="qty" id="qty">
   <br><br>
   </div>
 
-  <input type="submit" value="Assign Team">
+   <input type="submit" value="Assign Team"/>
 <br><br>
 </form>
 
+  
+  <br><br>
 
-  <form>
-    <label><b>Enter a Message</b></label>
-    <input type="text" name="message" id="user_input">
-  </form>
 
-  <input type="submit" onclick="showInput();"><br/>
-  <label>Your input: </label>
-  <p><span id='display'></span></p>
+
+<!-- from cohorts.js -->
+
+<h3>Assigned Teams:</h3><br><br>
+
+  <ul>
+  <% if (typeof newteamArray !== "undefined") { %>
+  <% for (i=0; i<newteamArray.length; i=i+1) { %>
+  <li><p> <%= i+1 %> </p> <p> <%= newteamArray[i] %> </p> 
+   </li>
+  <% } %>
+  <% } %>
+  </ul>
+
+
 
 
 
@@ -57,16 +57,12 @@
 <!-- New stuff above -->
 
 
+<br><br>
 
-
-<form action="/cohorts/<%= cohorts.id %>" method="POST">
-  <input type="hidden" name="_method" value="EDIT">
-  <input type="submit" value="Edit Cohort">
-</form>
 <br>
 <form action="/cohorts/<%= cohorts.id %>" method="POST">
   <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete">
+  <input type="submit" value="Delete Cohort">
 </form>
 
 
